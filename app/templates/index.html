@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <title>Face Recognition Based Attendance System</title>
+</head>
+<body>
+
+<header>
+    <h2><b>FACE RECOGNITION BASED ATTENDANCE SYSTEM</b></h2>
+</header>
+
+<div class="page-wrapper">
+    <div class="container-fluid mb-6">
+        <br>
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">Welcome!</h4>
+            <p>Please make sure to <b>REGISTER ALL STUDENTS</b> first before checking the attendance. For more information please refer to the about section below.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
+
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="card register">
+                        <div class="icon"> <img src= "{{url_for('static',filename = 'images/add-user.gif')}}" style="width: 30%"> </div>
+                        <a href="" data-toggle="modal" data-target="#myModal" class="stretched-link">REGISTER STUDENTS</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <form method=post action="/" enctype=multipart/form-data>
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Register Students</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <h5>Upload File Here:</h5>
+                                <br>
+                                <form onsubmit="return Validate(this);">
+                                    <div class="form-group">
+                                        <input type="file" accept=".zip,.rar,.7zip" name="files[]" class="form-control-file" id="exampleFormControlFile1" required>
+                                    </div>
+                                    <small class="form-text text-muted">*Note: Only compressed folder is accepted. Please make sure to upload photos that clearly shows the person's facial features.
+                                        The filename of folder contained inside the compressed folder should be the student's name.</small>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type=submit value=Upload class="btn btn-primary">Upload Files</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="card view">
+                        <div class="icon"> <img src="{{url_for('static',filename = 'images/train.png')}}" style="width: 26%"> </div>
+                        <form action = "{{url_for ('train')}}" method = "post">
+                            <button> TRAIN</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="card view">
+                        <div class="icon"> <img src="{{url_for('static',filename = 'images/check-user.png')}}" style="width: 30%"> </div>
+                        <form action = "{{url_for ('recognize')}}" method = "post">
+                            <button> CHECK ATTENDANCE </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="card view">
+                        <div class="icon"> <img src="{{url_for('static',filename = 'images/view-file.png')}}" style="width: 30%"> </div>
+                        <a href="{{url_for('static',filename = 'Attendance.csv')}}" download ="Attendance.csv" >GENERATE ATTENDANCE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer" id="#footer">
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h1 class="text">ABOUT</h1>
+            <p>Face recognition techniques are prevalent in various attendance, recognition, and identification processes in different areas. The team saw how face recognition technology could be an efficient way of managing attendance. This face recognition-based attendance system can detect and recognize the faces of all the people seen in the picture simultaneously. The system can also export a daily report of attendance.</p>
+        </div>
+        <div class="footer-section extra">
+            <p>The application has the following menu features:</p>
+            <ul>
+                <li><b>Register Students:</b> Allows you to upload your student's images. This prompts you to a modal where you will be uploading the zip file containing the student's images.</li>
+                <li><b>Train:</b> This will be pre-processing and train the uploaded images. This improves the ability to detect and recognize the faces of the students.</li>
+                <li><b>Check Attendance:</b> Allows you to check the attendance during your virtual meeting through a screenshot. The system will be capturing 5 screenshots with a 2 seconds interval per screenshot.</li>
+                <li><b>Generate Attendance:</b> This generates the class attendance spreadsheet. A csv file that contains the student's attendance will be downloading. </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright Kornbip19 &copy;2021 All rights reserved | Designed by Kornbip19 UI Team</p>
+    </div>
+</div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js">script></script>
+<script>
+    var _validFileExtensions = [".zip"];
+    function Validate(oForm) {
+        var arrInputs = oForm.getElementsByTagName("input");
+        for (var i = 0; i < arrInputs.length; i++) {
+            var oInput = arrInputs[i];
+            if (oInput.type == "file") {
+                var sFileName = oInput.value;
+                if (sFileName.length > 0) {
+                    var blnValid = false;
+                    for (var j = 0; j < _validFileExtensions.length; j++) {
+                        var sCurExtension = _validFileExtensions[j];
+                        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                            blnValid = true;
+                            break;
+                        }
+                    }
+
+                    if (!blnValid) {
+                        alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+    </script>
+</html>

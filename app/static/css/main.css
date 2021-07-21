@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 10;
+    padding: 10;
+}
+
+html{
+    height: 100%;
+} 
+body {
+    height: 80%;
+    background-color: #f2f2f2 !important;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+p {
+    font-size: small;
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none !important;
+    color: inherit !important;
+    font-size: large !important;
+ }
+
+button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none !important;
+    font-size: large !important;
+    position: center !important;
+}
+
+button:hover {
+    color: white;
+}
+
+li {
+    font-size: 11.9px;
+}
+
+/*Header*/
+header {
+    background-color: #d4e1f4;
+    height: 85px;
+    position: relative;
+}
+
+header:after {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 30%;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.4);
+}
+
+h2 {
+    text-align: center;
+    padding-top: 20px;
+    font-size: xx-large;
+}
+
+/*Main Content*/
+.page-wrapper {
+    min-height: 90%;
+}
+
+.row{
+    position: center;
+}
+
+.box {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.card {
+    margin-top: 70px;
+    padding: 0 60px;
+    min-height: 120px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #fff;
+    transition: all .4s ease-in-out;
+    box-shadow: 0 0 25px 0 rgba(20, 27, 202, .17);
+}
+
+.card .icon {
+    margin-bottom: -21px;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+.card:hover {
+    box-shadow: 0 0 25px 0 rgba(20, 27, 201, .05);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #34b5bf 0%, #210c59 100%);
+}
+
+
+/*Footer*/
+.footer{
+    background-image: linear-gradient(-45deg, #34b5bf 0%, #210c59 100%);
+    color: #d3d3d3;
+    height: 270px;
+    position: relative;
+}
+.footer .footer-content{
+    height: 150px;
+    display: flex;
+    margin-left: 45px;
+}
+
+.footer .footer-content .footer-section{
+    flex: 1;
+    padding: 25px;
+    border: 1px;
+}
+
+.footer .footer-content h1{
+    color: white;
+}
+
+.footer .footer-content .about h1{
+    color: #34b5bf;
+}
+
+
+.footer .footer-bottom{
+    background-color: #d4e1f4;
+    color: dimgrey;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding-top: 10px;
+}
+
+.text {
+    font-size: large;
+}
